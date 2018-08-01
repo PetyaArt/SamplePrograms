@@ -100,6 +100,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Население по региону >" />
+
+        <EditText
+            android:id="@+id/editTextRegion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -121,6 +129,7 @@
             android:orientation="vertical">
 
             <RadioGroup
+                android:id="@+id/radioSort"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

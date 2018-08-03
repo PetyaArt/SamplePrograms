@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <ExpandableListView
-        android:id="@+id/elvMain"
+        android:id="@+id/expandableListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ExpandableListView>

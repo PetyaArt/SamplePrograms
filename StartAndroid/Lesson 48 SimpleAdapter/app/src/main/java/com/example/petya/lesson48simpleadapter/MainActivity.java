@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Map<String, Object>> data = new ArrayList<Map<String, Object>>(texts.length);
 
         Map<String, Object> m;
+
         for (int i = 0; i < texts.length; i++) {
             m = new HashMap<String, Object>();
             m.put(ATTRIBUTE_NAME_TEXT, texts[i]);
@@ -40,10 +41,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // массив имен атрибутов, из которых будут читаться данные
+        /*String[] from = { ATTRIBUTE_NAME_TEXT, ATTRIBUTE_NAME_CHECKED,
+                ATTRIBUTE_NAME_IMAGE };*/
         String[] from = { ATTRIBUTE_NAME_TEXT, ATTRIBUTE_NAME_CHECKED,
-                ATTRIBUTE_NAME_IMAGE };
+                ATTRIBUTE_NAME_IMAGE, ATTRIBUTE_NAME_TEXT };
+        /*String[] from = { ATTRIBUTE_NAME_TEXT, ATTRIBUTE_NAME_CHECKED,
+                ATTRIBUTE_NAME_CHECKED, ATTRIBUTE_NAME_TEXT };*/
 
-        int[] to = { R.id.tvText, R.id.cbChecked, R.id.ivImg };
+
+        //int[] to = { R.id.tvText, R.id.cbChecked, R.id.ivImg };
+        int[] to = { R.id.tvText, R.id.cbChecked, R.id.ivImg, R.id.cbChecked };
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, data, R.layout.item, from, to);
 

@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     GridView mGridView;
     ArrayAdapter<String> mAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,4 +33,5 @@ public class MainActivity extends AppCompatActivity {
         mGridView.setHorizontalSpacing(5);
         mGridView.setStretchMode(GridView.STRETCH_SPACING_UNIFORM );
     }
+
 }

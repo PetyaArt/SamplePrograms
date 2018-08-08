@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lesson 70 onSaveInstanceState</string>
+    <string name="count">Count</string>
+</resources>

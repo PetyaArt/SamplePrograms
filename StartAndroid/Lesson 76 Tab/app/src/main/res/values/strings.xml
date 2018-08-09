@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lesson 76 Tab</string>
+    <string name="text_tab1">Это первая вкладка</string>
+    <string name="text_tab2">Это вторая вкладка</string>
+    <string name="text_tab3">Это третья вкладка</string>
+    <string name="text_tab_header">Свой заголовок</string>
+</resources>

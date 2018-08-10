@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lesson 94 Service onStartCommand</string>
+    <string name="start">Start</string>
+</resources>

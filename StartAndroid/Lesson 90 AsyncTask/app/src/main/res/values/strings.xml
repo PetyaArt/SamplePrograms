@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lesson 90 AsyncTask</string>
+    <string name="start">Start</string>
+    <string name="status">Status</string>
+</resources>

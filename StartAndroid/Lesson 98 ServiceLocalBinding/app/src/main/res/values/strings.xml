@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Lesson 98 Service Local Binding</string>
+    <string name="start">Start</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+</resources>

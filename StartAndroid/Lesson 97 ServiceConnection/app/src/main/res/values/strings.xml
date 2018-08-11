@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lesson 97 ServiceConnection</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="bind">Bind</string>
+    <string name="unbind">Unbind</string>
+</resources>

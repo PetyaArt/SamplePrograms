@@ -33,7 +33,7 @@ public class MyContactsProvider extends ContentProvider {
             + CONTACT_ID + "integer primary key autoincrement, "
             + CONTACT_NAME + " text, " + CONTACT_EMAIL + " text" + ")";
 
-    static final String AUTHORITY = "";
+    static final String AUTHORITY = "ru.startandroid.providers.AdressBook";
 
     static final String CONTACT_PATH = "contacts";
 
@@ -64,7 +64,7 @@ public class MyContactsProvider extends ContentProvider {
     public boolean onCreate() {
         Log.d(LOG_TAG, "onCreate");
         dbHelper = new DBHelper(getContext());
-        return false;
+        return true;
     }
 
     @Nullable

@@ -2,6 +2,7 @@ package com.example.petya.lesson104fragmentslifecycle;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,8 +14,8 @@ public class Fragment2 extends Fragment {
     final String LOG_TAG = "myLogs";
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context Context) {
+        super.onAttach(Context);
         Log.d(LOG_TAG, "Fragment2 onAttach");
     }
 

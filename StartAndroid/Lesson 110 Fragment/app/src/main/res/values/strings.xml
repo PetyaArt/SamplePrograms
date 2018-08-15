@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lesson 110 Fragment DialogFragment</string>
+    <string name="dialog_1">Dialog 1</string>
+    <string name="dialog_2">Dialog 2</string>
+    <string name="message_text">Text of your message</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="maybe">Maybe</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lesson 109 Fragments ListFragment</string>
+    <string name="number_list">Список чисел</string>
+    <string name="empty">Нет данных</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lesson 106 Fragments Interaction with Activity</string>
+    <string name="frag1_text">Fragment 1</string>
+    <string name="frag2_text">Fragment 2</string>
+    <string name="log">Log</string>
+    <string name="find">Find</string>
+</resources>

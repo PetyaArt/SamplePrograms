@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     ActionMode mActionMode;
     ListView mListView;
     final String LOG_TAG = "myLogs";
+    final String LOG_TAG1 = "myLogs";
 
     String[] data = { "one", "two", "three", "four", "five" };
 

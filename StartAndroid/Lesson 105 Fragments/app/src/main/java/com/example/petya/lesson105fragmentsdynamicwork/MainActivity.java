@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
         mFragment2 = new Fragment2();
 
         mCheckBox = findViewById(R.id.chbStack);
+
+        Button button = findViewById(R.id.btnAdd);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     public void onClick(View view) {

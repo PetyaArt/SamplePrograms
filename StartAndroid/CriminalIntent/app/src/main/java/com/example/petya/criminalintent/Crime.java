@@ -1,6 +1,10 @@
 package com.example.petya.criminalintent;
 
+import android.widget.TimePicker;
+
+import java.sql.Time;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class Crime {
@@ -51,4 +55,5 @@ public class Crime {
     public void setSolved(boolean solved) {
         mSolved = solved;
     }
+
 }

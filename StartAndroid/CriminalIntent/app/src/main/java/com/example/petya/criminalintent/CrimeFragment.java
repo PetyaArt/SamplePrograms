@@ -158,6 +158,11 @@ public class CrimeFragment extends Fragment {
 
     }
 
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+    }
+
     private void updateTime() {
         mTimeButton.setText(DateFormat.format("k:mm, a", mCrime.getDate()));
     }

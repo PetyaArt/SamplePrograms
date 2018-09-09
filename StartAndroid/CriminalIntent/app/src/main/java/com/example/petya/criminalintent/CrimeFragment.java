@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private Button mTimeButton;
+    private Button mDeleteButton;
     private CheckBox mSolvedCheckBox;
     private List<Crime> mCrimes;
 
@@ -101,7 +103,7 @@ public class CrimeFragment extends Fragment {
                 FragmentManager manager = getFragmentManager();
                 TimePickerFragment dialog = TimePickerFragment.newInstance(mCrime.getDate());
                 dialog.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
-                dialog.show(manager, DIALOG_DATE);
+                dialog.show(manager, DIALOG_TIME);
             }
         });
 
@@ -115,16 +117,30 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        for (Crime crime : mCrimes) {
-            if (mCrimes.get(0).equals(mCrime)) {
-                Button button = v.findViewById(R.id.button_start);
-                button.setEnabled(false);
-            }
-            else if (mCrimes.get(mCrimes.size() - 1).equals(mCrime)) {
-                Button button = v.findViewById(R.id.button_end);
-                button.setEnabled(false);
-            }
+        if (mCrimes.get(0).equals(mCrime)) {
+            Button button = v.findViewById(R.id.button_start);
+            button.setEnabled(false);
         }
+        else if (mCrimes.get(mCrimes.size() - 1).equals(mCrime)) {
+            Button button = v.findViewById(R.id.button_end);
+            button.setEnabled(false);
+        }
+
+
+        mDeleteButton = v.findViewById(R.id.button_delete);
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < mCrimes.size(); i++) {
+                    Log.d("myLogs", mCrime.getId().toString());
+                    Log.d("myLogs", mCrimes.get(i).getId().toString());
+                    if (mCrimes.get(i).getId() == mCrime.getId()) {
+                        mCrimes.remove(i);
+                    }
+                }
+                getActivity().onBackPressed();
+            }
+        });
 
         return v;
     }
@@ -154,13 +170,6 @@ public class CrimeFragment extends Fragment {
                 }
                 break;
         }
-
-
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
     }
 
     private void updateTime() {

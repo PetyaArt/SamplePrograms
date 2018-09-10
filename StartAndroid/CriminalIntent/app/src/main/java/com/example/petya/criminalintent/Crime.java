@@ -1,5 +1,6 @@
 package com.example.petya.criminalintent;
 
+import android.util.Log;
 import android.widget.TimePicker;
 
 import java.sql.Time;
@@ -14,6 +15,7 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
     private int mRequiresPolice;
+    private String mSuspect;
 
     public int getRequiresPolice() {
         return mRequiresPolice;
@@ -24,7 +26,11 @@ public class Crime {
     }
 
     public Crime() {
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Crime(UUID id) {
+        mId = id;
         mDate = new Date();
     }
 
@@ -56,4 +62,11 @@ public class Crime {
         mSolved = solved;
     }
 
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
+    }
 }

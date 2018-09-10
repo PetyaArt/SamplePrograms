@@ -68,7 +68,22 @@ public class DatePickerFragment extends DialogFragment {
                 getDialog().onBackPressed();
             }
         });
+
         return view;
+    }
+
+    private void sendResult(int resultCode, Date date) {
+
+        if (getTargetFragment() == null) {
+            return;
+        }
+
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_DATE, date);
+
+        getTargetFragment()
+                .onActivityResult(getTargetRequestCode(), resultCode, intent);
+
     }
 
     /*@NonNull
@@ -103,18 +118,4 @@ public class DatePickerFragment extends DialogFragment {
                 })
                 .create();
     }*/
-
-    private void sendResult(int resultCode, Date date) {
-
-        if (getTargetFragment() == null) {
-            return;
-        }
-
-        Intent intent = new Intent();
-        intent.putExtra(EXTRA_DATE, date);
-
-        getTargetFragment()
-                .onActivityResult(getTargetRequestCode(), resultCode, intent);
-
-    }
 }

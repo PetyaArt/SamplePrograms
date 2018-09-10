@@ -138,7 +138,10 @@ public class CrimeFragment extends Fragment {
                         mCrimes.remove(i);
                     }
                 }
-                getActivity().onBackPressed();
+                Intent intent = new Intent(getContext(), CrimeListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 

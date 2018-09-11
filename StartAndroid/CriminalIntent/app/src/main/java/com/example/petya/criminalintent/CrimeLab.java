@@ -12,6 +12,7 @@ import com.example.petya.criminalintent.database.CrimeCursorWrapper;
 import com.example.petya.criminalintent.database.CrimeDbSchema;
 import com.example.petya.criminalintent.database.CrimeDbSchema.CrimeTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -79,6 +80,11 @@ public class CrimeLab {
         }
     }
 
+    public File getPhotoFile(Crime crime) {
+        File fileDir = mContext.getFilesDir();
+        return new File(fileDir, crime.getPhotoFilename());
+    }
+
     public void updateCrime(Crime crime) {
         String uuidString = crime.getId().toString();
         ContentValues values = getContentValues(crime);
@@ -119,8 +125,6 @@ public class CrimeLab {
         }
         return sCrimeLab;
     }
-
-
 
 
 }

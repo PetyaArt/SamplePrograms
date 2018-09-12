@@ -222,6 +222,7 @@ public class CrimeFragment extends Fragment {
         });
 
         mPhotoView = v.findViewById(R.id.crime_photo);
+        updatePhotoView();
 
         return v;
     }
@@ -273,7 +274,14 @@ public class CrimeFragment extends Fragment {
                 } finally {
                     c.close();
                 }
+                break;
+            case REQUEST_PHOTO:
+                Uri uri = FileProvider.getUriForFile(getActivity(),
+                        "com.example.petya.criminalintent.fileprovider",
+                        mPhotoFile);
+                getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
+                updatePhotoView();
                 break;
         }
     }

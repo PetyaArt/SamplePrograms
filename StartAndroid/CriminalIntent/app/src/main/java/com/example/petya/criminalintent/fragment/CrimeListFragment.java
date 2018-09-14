@@ -1,4 +1,4 @@
-package com.example.petya.criminalintent;
+package com.example.petya.criminalintent.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.petya.criminalintent.model.Crime;
+import com.example.petya.criminalintent.model.CrimeLab;
+import com.example.petya.criminalintent.R;
+import com.example.petya.criminalintent.activity.CrimePagerActivity;
 
 import java.util.List;
-import java.util.UUID;
 
 
 public class CrimeListFragment extends Fragment {
@@ -38,6 +41,10 @@ public class CrimeListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        Log.d("myLogs", getContext().getFilesDir().toString());
+        Log.d("myLogs", getContext().fileList().toString());
+        Log.d("myLogs", getContext().getCacheDir().toString());
     }
 
     @Nullable

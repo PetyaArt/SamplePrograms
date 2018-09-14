@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CrimeListActivity">
+        <activity android:name=".activity.CrimeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CrimePagerActivity"  android:parentActivityName=".CrimeListActivity">
+        <activity android:name=".activity.CrimePagerActivity"  android:parentActivityName=".activity.CrimeListActivity">
         </activity>
 
         <provider
@@ -32,5 +32,7 @@
         </provider>
 
     </application>
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
 </manifest>

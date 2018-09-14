@@ -1,4 +1,4 @@
-package com.example.petya.criminalintent;
+package com.example.petya.criminalintent.fragment;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -15,13 +15,10 @@ import android.view.View;
 import android.widget.TimePicker;
 
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.example.petya.criminalintent.R;
+
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 
 public class TimePickerFragment extends DialogFragment {

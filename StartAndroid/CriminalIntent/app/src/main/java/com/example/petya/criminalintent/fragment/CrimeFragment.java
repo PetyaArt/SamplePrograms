@@ -1,10 +1,9 @@
-package com.example.petya.criminalintent;
+package com.example.petya.criminalintent.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -20,20 +19,25 @@ import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.petya.criminalintent.model.Crime;
+import com.example.petya.criminalintent.model.CrimeLab;
+import com.example.petya.criminalintent.model.PictureUtils;
+import com.example.petya.criminalintent.R;
+import com.example.petya.criminalintent.activity.CrimeListActivity;
+
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -78,6 +82,7 @@ public class CrimeFragment extends Fragment {
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
         mCrimes = CrimeLab.get(getActivity()).getCrimes();
         mPhotoFile = CrimeLab.get(getActivity()).getPhotoFile(mCrime);
+
     }
 
     @Nullable
@@ -207,6 +212,8 @@ public class CrimeFragment extends Fragment {
                 Uri uri = FileProvider.getUriForFile(getActivity(),
                         "com.example.petya.criminalintent.fileprovider",
                         mPhotoFile);
+
+
                 captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 List<ResolveInfo> cameraActivities = getActivity()
                         .getPackageManager().queryIntentActivities(captureImage,
@@ -222,6 +229,14 @@ public class CrimeFragment extends Fragment {
         });
 
         mPhotoView = v.findViewById(R.id.crime_photo);
+        mPhotoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DialogPhotoShowFragment dialog = DialogPhotoShowFragment.newInstance(mCrime.getId());
+                dialog.show(manager, DIALOG_TIME);
+            }
+        });
         updatePhotoView();
 
         return v;

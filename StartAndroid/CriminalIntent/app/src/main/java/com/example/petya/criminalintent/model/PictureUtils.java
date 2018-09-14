@@ -1,4 +1,4 @@
-package com.example.petya.criminalintent;
+package com.example.petya.criminalintent.model;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

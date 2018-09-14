@@ -1,20 +1,16 @@
-package com.example.petya.criminalintent;
+package com.example.petya.criminalintent.model;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.petya.criminalintent.database.CrimeBaseHelper;
 import com.example.petya.criminalintent.database.CrimeCursorWrapper;
-import com.example.petya.criminalintent.database.CrimeDbSchema;
 import com.example.petya.criminalintent.database.CrimeDbSchema.CrimeTable;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 

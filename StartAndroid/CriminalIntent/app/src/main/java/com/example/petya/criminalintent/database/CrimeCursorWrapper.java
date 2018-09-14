@@ -2,9 +2,8 @@ package com.example.petya.criminalintent.database;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import android.util.Log;
 
-import com.example.petya.criminalintent.Crime;
+import com.example.petya.criminalintent.model.Crime;
 import com.example.petya.criminalintent.database.CrimeDbSchema.CrimeTable;
 
 import java.util.Date;

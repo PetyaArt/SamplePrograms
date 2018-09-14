@@ -1,4 +1,4 @@
-package com.example.petya.criminalintent;
+package com.example.petya.criminalintent.model;
 
 import android.util.Log;
 import android.widget.TimePicker;

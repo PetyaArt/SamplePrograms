@@ -1,6 +1,7 @@
 package com.example.petya.criminalintent.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.petya.criminalintent.activity.CrimePagerActivity;
 import com.example.petya.criminalintent.model.Crime;
 import com.example.petya.criminalintent.model.CrimeLab;
 import com.example.petya.criminalintent.model.PictureUtils;
@@ -59,12 +61,30 @@ public class CrimeFragment extends Fragment {
     private Button mDateButton;
     private Button mTimeButton;
     private Button mDeleteButton;
+    private Button mStartPositionButton;
+    private Button mEndPositionButton;
     private CheckBox mSolvedCheckBox;
     private List<Crime> mCrimes;
     private  Button mReportButton;
     private Button mSuspectButton;
     private ImageButton mPhotoButton;
     private ImageView mPhotoView;
+    private Callbacks mCallbacks;
+
+    public interface Callbacks {
+        void onCrimeUpdated(Crime crime);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks) context;
+    }
+
+    private void updateCrime() {
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
+        mCallbacks.onCrimeUpdated(mCrime);
+    }
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -101,6 +121,7 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 mCrime.setTitle(charSequence.toString());
+                updateCrime();
             }
 
             @Override
@@ -140,6 +161,7 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 mCrime.setSolved(isChecked);
+                updateCrime();
             }
         });
 
@@ -239,6 +261,7 @@ public class CrimeFragment extends Fragment {
         });
         updatePhotoView();
 
+
         return v;
     }
 
@@ -252,6 +275,7 @@ public class CrimeFragment extends Fragment {
                 if (resultCode == Activity.RESULT_OK) {
                     Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
                     mCrime.setDate(date);
+                    updateCrime();
                     updateDate();
                 }
                 break;
@@ -285,6 +309,7 @@ public class CrimeFragment extends Fragment {
                     c.moveToFirst();
                     String suspect = c.getString(0);
                     mCrime.setSuspect(suspect);
+                    updateCrime();
                     mSuspectButton.setText(suspect);
                 } finally {
                     c.close();
@@ -295,7 +320,7 @@ public class CrimeFragment extends Fragment {
                         "com.example.petya.criminalintent.fileprovider",
                         mPhotoFile);
                 getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
+                updateCrime();
                 updatePhotoView();
                 break;
         }
@@ -347,5 +372,11 @@ public class CrimeFragment extends Fragment {
     public void onPause() {
         super.onPause();
         CrimeLab.get(getActivity()).updateCrime(mCrime);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
     }
 }

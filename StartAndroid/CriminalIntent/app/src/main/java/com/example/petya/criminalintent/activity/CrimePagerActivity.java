@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.petya.criminalintent.model.Crime;
@@ -18,7 +19,7 @@ import com.example.petya.criminalintent.R;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimePagerActivity extends AppCompatActivity{
+public class CrimePagerActivity extends AppCompatActivity implements CrimeFragment.Callbacks {
 
     private static final String EXTRA_CRIME_ID =
             "com.example.petya.criminalintent.crime_id";
@@ -65,14 +66,8 @@ public class CrimePagerActivity extends AppCompatActivity{
         }
     }
 
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button_start:
-                mViewPager.setCurrentItem(0);
-                break;
-            case R.id.button_end:
-                mViewPager.setCurrentItem(mCrimes.size() - 1);
-                break;
-        }
+    @Override
+    public void onCrimeUpdated(Crime crime) {
     }
+
 }

@@ -1,7 +1,6 @@
 package com.example.petya.criminalintent.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,14 +20,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.petya.criminalintent.fragment.list.ItemTouchHelperAdapter;
+import com.example.petya.criminalintent.fragment.list.ItemTouchHelperCustom;
 import com.example.petya.criminalintent.model.Crime;
 import com.example.petya.criminalintent.model.CrimeLab;
 import com.example.petya.criminalintent.R;
-import com.example.petya.criminalintent.activity.CrimePagerActivity;
 
+import java.util.Collections;
 import java.util.List;
-
-import javax.security.auth.callback.Callback;
 
 
 public class CrimeListFragment extends Fragment {
@@ -77,6 +77,10 @@ public class CrimeListFragment extends Fragment {
 
         updateUI();
 
+        ItemTouchHelper.Callback callback = new ItemTouchHelperCustom(mAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(mCrimeRecyclerView);
+
         return view;
     }
 
@@ -100,7 +104,7 @@ public class CrimeListFragment extends Fragment {
         updateSubtitle();
     }
 
-    private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mTitleTextView;
         private TextView mDateTextView;
@@ -128,9 +132,11 @@ public class CrimeListFragment extends Fragment {
             mCurrentCrimeIdChanged = getAdapterPosition();
             mCallbacks.onCrimeSelected(mCrime);
         }
+
+
     }
 
-    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
+    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> implements ItemTouchHelperAdapter {
 
         private List<Crime> mCrimes;
 
@@ -143,6 +149,7 @@ public class CrimeListFragment extends Fragment {
         public CrimeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             return new CrimeHolder(layoutInflater, parent);
+
         }
 
         @Override
@@ -158,6 +165,27 @@ public class CrimeListFragment extends Fragment {
 
         public void setCrimes(List<Crime> crimes) {
             mCrimes = crimes;
+        }
+
+        @Override
+        public boolean onItemMove(int fromPosition, int toPosition) {
+            if (fromPosition < toPosition) {
+                for (int i = fromPosition; i < toPosition; i++) {
+                    Collections.swap(mCrimes, i, i + 1);
+                }
+            } else {
+                for (int i = fromPosition; i > toPosition; i--) {
+                    Collections.swap(mCrimes, i, i - 1);
+                }
+            }
+            notifyItemMoved(fromPosition, toPosition);
+            return true;
+        }
+
+        @Override
+        public void onItemDismiss(int position) {
+            mCrimes.remove(position);
+            notifyItemRemoved(position);
         }
     }
 

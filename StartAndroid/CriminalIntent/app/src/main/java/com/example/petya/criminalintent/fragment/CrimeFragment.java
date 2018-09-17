@@ -42,6 +42,7 @@ import com.example.petya.criminalintent.activity.CrimeListActivity;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
@@ -332,7 +333,6 @@ public class CrimeFragment extends Fragment {
 
     private void updateDate() {
         mDateButton.setText(DateFormat.format("E, MMMM d, yyyy" , mCrime.getDate()));
-
     }
 
     private String getCrimeReport() {
@@ -379,4 +379,5 @@ public class CrimeFragment extends Fragment {
         super.onDetach();
         mCallbacks = null;
     }
+
 }

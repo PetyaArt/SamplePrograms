@@ -34,23 +34,33 @@ public class DrawView extends View {
         canvas.drawPoint(1024, 1200, mPaint);
         canvas.drawLine(1074, 1200, 974, 1200, mPaint);
         canvas.drawLine(974, 1200, 974, 1_100, mPaint);
+        canvas.drawLine(974, 1100, 1_074, 1_100, mPaint);
         float Ax = 974f;
         float Ay = 1100f;
-        canvas.drawLine(974, 1100, 1_074, 1_100, mPaint);
         float Bx = 1074f;
         float By = 1100f;
         canvas.drawLine(1074, 1100, 1074, 1200, mPaint);
 
+        double ANGLE = 45;
+        double ALPHA = ANGLE * PI / 180;
+
         float Lx = 1074 - 974;
         float Ly = 1100 - 1100;
-        float A = (float) sqrt(pow(Lx, 2) + pow(Ly, 2));
+        float x = (float) sqrt(pow(Lx, 2) + pow(Ly, 2));
+        double y=x*cos(ALPHA), z=x*sin(ALPHA);
 
-        float y = (float) cos(A);
+        float Cx = (float) (Bx * cos(toRadians(90)) + By * sin(toRadians(90)));
+        float Cy = (float) (-1 * Bx * sin(toRadians(90)) + By * cos(toRadians(90)));
 
-        float Cx = 
-        float Cy = (float) (-1 * Bx * sin(toRadians(45)) + By * cos(toRadians(45))) + 1000;
+        Cx = (float) (Cx*(y/x));
+
+        float Cx2 = (float) (Ax * cos(toRadians(45)) - Ay * sin(toRadians(45)));
+        float Cy2 = (float) (Ax * sin(toRadians(45)) + Ay * cos(toRadians(45)));
         Log.d("myLogs", String.valueOf(Cx));
         Log.d("myLogs", String.valueOf(Cy));
-        canvas.drawPoint(Cx, Cy, mPaint);
+        Log.d("myLogs", String.valueOf(Cx2));
+        Log.d("myLogs", String.valueOf(Cy2));
+        canvas.drawLine(974, 1100, Cx, Cy, mPaint);
+        canvas.drawLine(1_074, 1_100, Cx2, Cy2, mPaint);
     }
 }

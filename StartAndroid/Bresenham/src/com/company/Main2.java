@@ -15,7 +15,7 @@ public class Main2 {
     public static class MyComponent extends JComponent {
         @Override
         public void paint(Graphics g) {
-            drawLineCustom(100, 120, 200, 90, g);
+            drawLineCustom(100, 100, 150, 650, g);
         }
     }
 
